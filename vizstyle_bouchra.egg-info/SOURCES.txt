@@ -1,0 +1,15 @@
+README.md
+pyproject.toml
+setup.py
+vizstyle_bouchra/__init__.py
+vizstyle_bouchra/bar.py
+vizstyle_bouchra/boxplot.py
+vizstyle_bouchra/histogram.py
+vizstyle_bouchra/line.py
+vizstyle_bouchra/scatter.py
+vizstyle_bouchra/style.py
+vizstyle_bouchra.egg-info/PKG-INFO
+vizstyle_bouchra.egg-info/SOURCES.txt
+vizstyle_bouchra.egg-info/dependency_links.txt
+vizstyle_bouchra.egg-info/requires.txt
+vizstyle_bouchra.egg-info/top_level.txt

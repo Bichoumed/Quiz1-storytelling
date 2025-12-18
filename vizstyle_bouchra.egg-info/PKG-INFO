@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: vizstyle_bouchra
+Version: 0.1.0
+Summary: Personal styled visualization library in Python
+Author: Bouchra Ahmed Ramdhane
+Author-email: Bouchra Ahmed Ramdhane <bouchramocktar@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/yourusername/vizstyle_bouchra
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: matplotlib>=3.5
+Dynamic: author
+
+# Quiz1-storytelling
