@@ -2,12 +2,11 @@
 import matplotlib.pyplot as plt
 
 PALETTE = {
-    "charcoal": "#1F2937",
-    "blue": "#2563EB",
-    "orange": "#D97706",
-    "green": "#15803D",
-    "red": "#B91C1C",
-    "gray": "#4B5563",
+    "ink": "#111827",
+    "accent": "#C2410C",
+    "accent_dark": "#7C2D12",
+    "muted": "#4B5563",
+    "light_gray": "#E5E7EB",
     "bg": "#FFFFFF",
 }
 
@@ -24,16 +23,16 @@ def apply_style():
         "axes.titleweight": "bold",
         "axes.titlesize": 15,
         "axes.labelsize": 12,
-        "axes.titlecolor": PALETTE["charcoal"],
-        "axes.labelcolor": PALETTE["gray"],
-        "xtick.color": PALETTE["gray"],
-        "ytick.color": PALETTE["gray"],
+        "axes.titlecolor": PALETTE["ink"],
+        "axes.labelcolor": PALETTE["muted"],
+        "xtick.color": PALETTE["muted"],
+        "ytick.color": PALETTE["muted"],
 
         # Axes
-        "axes.edgecolor": PALETTE["charcoal"],
+        "axes.edgecolor": PALETTE["ink"],
         "axes.linewidth": 1.1,
 
-        # NO GRID
+        # No grid
         "axes.grid": False,
 
         # Lines

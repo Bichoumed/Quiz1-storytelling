@@ -9,10 +9,10 @@ def styled_boxplot(data, title="", ylabel=""):
     ax.boxplot(
         data,
         patch_artist=True,
-        boxprops=dict(facecolor=p["blue"], edgecolor=p["charcoal"]),
-        medianprops=dict(color=p["charcoal"], linewidth=2),
-        whiskerprops=dict(color=p["charcoal"]),
-        capprops=dict(color=p["charcoal"]),
+        boxprops=dict(facecolor=p["accent"], edgecolor=p["ink"]),
+        medianprops=dict(color=p["ink"], linewidth=2),
+        whiskerprops=dict(color=p["ink"]),
+        capprops=dict(color=p["ink"]),
     )
 
     ax.set_title(title)

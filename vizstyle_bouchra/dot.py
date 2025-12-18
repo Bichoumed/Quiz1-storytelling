@@ -1,18 +1,17 @@
-# vizstyle_bouchra/line.py
+# vizstyle_bouchra/dot.py
 import matplotlib.pyplot as plt
 from .style import apply_style
 
-def styled_line(x, y, title="", xlabel="", ylabel=""):
+def styled_dot(x, y, title="", xlabel="", ylabel=""):
     p = apply_style()
 
     fig, ax = plt.subplots()
-    ax.plot(x, y, color=p["blue"], marker="o")
+    ax.scatter(x, y, s=80, color=p["accent"])
 
     ax.set_title(title)
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
 
-    # Clean spines
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 

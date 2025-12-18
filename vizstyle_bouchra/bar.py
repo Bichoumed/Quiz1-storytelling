@@ -6,7 +6,7 @@ def styled_bar(x, y, title="", xlabel="", ylabel=""):
     p = apply_style()
 
     fig, ax = plt.subplots()
-    ax.bar(x, y, color=p["orange"], width=0.6)
+    ax.bar(x, y, color=p["accent"], width=0.6)
 
     ax.set_title(title)
     ax.set_xlabel(xlabel)

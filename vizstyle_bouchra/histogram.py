@@ -6,7 +6,12 @@ def styled_hist(data, bins=6, title="", xlabel="", ylabel="Frequency"):
     p = apply_style()
 
     fig, ax = plt.subplots()
-    ax.hist(data, bins=bins, color=p["green"], edgecolor=p["charcoal"])
+    ax.hist(
+        data,
+        bins=bins,
+        color=p["accent"],
+        edgecolor=p["ink"]
+    )
 
     ax.set_title(title)
     ax.set_xlabel(xlabel)
