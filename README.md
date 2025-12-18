@@ -1,13 +1,13 @@
 # Quiz1-storytelling
 
-1. Project Overview
+## 1. Project Overview
 
 VizStyle Bouchra is a personal Python visualization library developed as part of Quiz 1 : Storytelling & Data Visualization.
 The objective of this project is to design a reusable, pip-installable visualization library that provides clean, professional, and consistent graphical styles, inspired by editorial and consulting-grade data visualization standards.
 
 The library intentionally avoids default Matplotlib aesthetics and common data-science color conventions (blue/green), focusing instead on clarity, minimalism, and visual consistency.
 
-2. Design Principles
+## 2. Design Principles
 
 The visual design of the library follows strict principles:
 
@@ -23,7 +23,7 @@ High readability in reports (PDF, slides, print)
 
 All colors are centralized in a single palette to enforce consistency across all plots.
 
-3. Implemented Visualizations
+## 3. Implemented Visualizations
 
 The library provides five different visualization functions, meeting the minimum requirement of the assignment:
 
@@ -34,7 +34,7 @@ styled_dot	Dot plot
 styled_hist	Histogram
 styled_boxplot	Boxplot
 
-4. Example Usage
+## 4. Example Usage
 
 import vizstyle_bouchra as vz
 
@@ -74,7 +74,7 @@ vz.styled_dot(
     ylabel="Y"
 )
 
-5. Installation Instructions
+## 5. Installation Instructions
 
 To install the library locally:
 
@@ -82,4 +82,22 @@ pip install -e .
 
 
 The project uses pyproject.toml and follows PEP 517 standards for packaging.
+
+## 6. Graphical Outputs
+
+### Bar Chart
+![Bar Chart](screenshots/bar.png)
+
+### Scatter Plot
+![Scatter Plot](screenshots/scatter.png)
+
+### Histogram
+![Histogram](screenshots/histogram.png)
+
+### Boxplot
+![Boxplot](screenshots/boxplot.png)
+
+### Dot Plot
+![Dot Plot](screenshots/dot.png)
+
 
