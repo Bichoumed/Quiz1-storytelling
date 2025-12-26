@@ -1,1 +1,5 @@
 matplotlib>=3.5
+pandas
+geopandas
+bokeh
+xyzservices

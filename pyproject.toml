@@ -14,8 +14,12 @@ license = { text = "MIT" }
 requires-python = ">=3.8"
 
 dependencies = [
-    "matplotlib>=3.5"
+    "matplotlib>=3.5",
+    "pandas",
+    "geopandas",
+    "bokeh",
+    "xyzservices"
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/vizstyle_bouchra"
+Homepage = "https://github.com/Bichoumed/Quiz1-storytelling"

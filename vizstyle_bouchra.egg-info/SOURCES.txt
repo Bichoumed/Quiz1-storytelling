@@ -4,8 +4,9 @@ setup.py
 vizstyle_bouchra/__init__.py
 vizstyle_bouchra/bar.py
 vizstyle_bouchra/boxplot.py
+vizstyle_bouchra/dot.py
 vizstyle_bouchra/histogram.py
-vizstyle_bouchra/line.py
+vizstyle_bouchra/maps_bokeh.py
 vizstyle_bouchra/scatter.py
 vizstyle_bouchra/style.py
 vizstyle_bouchra.egg-info/PKG-INFO
