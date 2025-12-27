@@ -119,6 +119,7 @@ It provides reusable, styled charts and interactive maps using Bokeh and Matplot
 - Bokeh (interactive maps)
 - Custemized biblio
 
+[Watch demo video](demo/demo.mp4)
 - ## Usage
 
 ### Election map with candidate selector
@@ -131,7 +132,6 @@ vz.styled_election_map_bokeh(
     shp_path="mrshape/mrt_admbnda_adm2_ansade_20240327.shp"
 )
 
-[Watch demo video](demo/demo.mp4)
 
 
 
