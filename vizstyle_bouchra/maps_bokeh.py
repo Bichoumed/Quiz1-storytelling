@@ -8,7 +8,7 @@ from bokeh.models import (
     Select, CustomJS
 )
 from bokeh.layouts import column
-from bokeh.palettes import Viridis256
+from bokeh.palettes import Turbo256  # ✅ cool -> hot
 
 
 def styled_election_map_bokeh_candidate_selector(
@@ -24,7 +24,6 @@ def styled_election_map_bokeh_candidate_selector(
     # 1) Load election data
     df = pd.read_csv(csv_url)
 
-    # optional: remove "Parti ..." rows
     if drop_parties:
         df = df[~df[candidate_col].astype(str).str.contains("Parti", na=False)]
 
@@ -33,7 +32,6 @@ def styled_election_map_bokeh_candidate_selector(
     if missing:
         raise ValueError(f"Missing columns in CSV: {missing}. Available: {list(df.columns)}")
 
-    # normalize types
     df[region_col_csv] = df[region_col_csv].astype(str).str.strip()
     df[candidate_col] = df[candidate_col].astype(str).str.strip()
     df[votes_col] = pd.to_numeric(df[votes_col], errors="coerce").fillna(0)
@@ -56,8 +54,7 @@ def styled_election_map_bokeh_candidate_selector(
           })
     )
 
-    # 4) Votes for EACH candidate per region => pivot wide
-    # columns like votes__<candidate>
+    # 4) Votes for each candidate per region (wide)
     pivot = (
         df.pivot_table(
             index=region_col_csv,
@@ -85,28 +82,32 @@ def styled_election_map_bokeh_candidate_selector(
     gdf = gdf.merge(pivot, on="region", how="left")
 
     gdf["winner"] = gdf["winner"].fillna("N/A")
-    gdf["winner_votes"] = gdf["winner_votes"].fillna(0)
+    gdf["winner_votes"] = pd.to_numeric(gdf["winner_votes"], errors="coerce").fillna(0)
 
-    # Fill missing candidate columns with 0
     for c in candidates:
         if c not in gdf.columns:
             gdf[c] = 0
         gdf[c] = pd.to_numeric(gdf[c], errors="coerce").fillna(0)
 
-    # A display field that will be updated by dropdown
+    # Selected candidate fields
     gdf["selected_candidate"] = default_candidate
     gdf["selected_votes"] = gdf[default_candidate].astype(float)
 
     # 7) GeoJSON source
     source = GeoJSONDataSource(geojson=gdf.to_json())
 
-    # 8) Color scale based on selected_votes (initial)
-    low = float(gdf["selected_votes"].min())
+    # 8) ✅ Color scale: low fixed at 0 (calm), high depends on max votes (hot)
+    low = 0.0
     high = float(gdf["selected_votes"].max())
     if high <= low:
         high = low + 1.0
 
-    color_mapper = LinearColorMapper(palette=Viridis256, low=low, high=high)
+    color_mapper = LinearColorMapper(
+        palette=Turbo256,   # ✅ cool -> hot
+        low=low,
+        high=high,
+        nan_color="#d9d9d9" # optional: color for missing
+    )
 
     # 9) Figure
     p = figure(
@@ -142,42 +143,33 @@ def styled_election_map_bokeh_candidate_selector(
     # 10) Dropdown + JS callback
     selector = Select(title="Choose candidate:", value=default_candidate, options=candidates)
 
-    # We update selected_votes from the column that matches the chosen candidate.
-    # We also update color_mapper.low/high so the palette adapts to that candidate’s vote range.
     callback = CustomJS(args=dict(
         source=source,
         selector=selector,
         color_mapper=color_mapper,
-        candidates=candidates,
     ), code="""
         const geo = JSON.parse(source.geojson);
         const features = geo.features;
-
         const chosen = selector.value;
 
-        // update properties: selected_candidate + selected_votes
-        let minV = Infinity;
-        let maxV = -Infinity;
+        // ✅ keep 0 always the calm color
+        let maxV = 0;
 
         for (let i = 0; i < features.length; i++) {
             const props = features[i].properties;
 
-            // props[chosen] is the votes column for that candidate
             let v = props[chosen];
             if (v === null || v === undefined) v = 0;
 
             props["selected_candidate"] = chosen;
             props["selected_votes"] = v;
 
-            if (v < minV) minV = v;
             if (v > maxV) maxV = v;
         }
 
-        if (!isFinite(minV)) minV = 0;
-        if (!isFinite(maxV) || maxV <= minV) maxV = minV + 1;
-
-        color_mapper.low = minV;
-        color_mapper.high = maxV;
+        // ✅ force low=0, update only high
+        color_mapper.low = 0;
+        color_mapper.high = (maxV > 0) ? maxV : 1;
 
         source.geojson = JSON.stringify(geo);
     """)
@@ -185,4 +177,3 @@ def styled_election_map_bokeh_candidate_selector(
     selector.js_on_change("value", callback)
 
     show(column(selector, p))
-
