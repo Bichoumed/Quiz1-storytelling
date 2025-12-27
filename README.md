@@ -131,7 +131,8 @@ vz.styled_election_map_bokeh(
     shp_path="mrshape/mrt_admbnda_adm2_ansade_20240327.shp"
 )
 
-![Demo](images/election_demo.gif)
+[Watch demo video](demo/demo.mp4)
+
 
 
 
