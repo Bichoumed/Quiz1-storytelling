@@ -100,4 +100,40 @@ The project uses pyproject.toml and follows PEP 517 standards for packaging.
 ### Dot Plot
 ![Dot Plot](screenshots/dot.png)
 
+# VizStyle Bouchra – Election Data Storytelling
+
+A Python visualization library developed for the Data Storytelling assignment.
+It provides reusable, styled charts and interactive maps using Bokeh and Matplotlib.
+
+## Objectives
+
+- Apply data storytelling best practices
+- Visualize election results at ADM2 (moughataa) level
+- Avoid misleading graphics (single scale, perceptual colormap)
+- Provide reusable and well-documented plotting functions
+
+## Technologies
+
+- Python 3.10+
+- Pandas, GeoPandas
+- Bokeh (interactive maps)
+- Custemized biblio
+
+- ## Usage
+
+### Election map with candidate selector
+
+```python
+import vizstyle_bouchra as vz
+
+vz.styled_election_map_bokeh(
+    csv_url="https://raw.githubusercontent.com/binorassocies/rimdata/refs/heads/main/data/results_elections_rim_2019-2024.csv",
+    shp_path="mrshape/mrt_admbnda_adm2_ansade_20240327.shp"
+)
+
+![Demo](images/election_demo.gif)
+
+
+
+
 
