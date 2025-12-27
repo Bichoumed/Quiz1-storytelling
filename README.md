@@ -126,11 +126,26 @@ It provides reusable, styled charts and interactive maps using Bokeh and Matplot
 
 ```python
 import vizstyle_bouchra as vz
+from bokeh.io import output_notebook, reset_output
 
-vz.styled_election_map_bokeh(
-    csv_url="https://raw.githubusercontent.com/binorassocies/rimdata/refs/heads/main/data/results_elections_rim_2019-2024.csv",
-    shp_path="mrshape/mrt_admbnda_adm2_ansade_20240327.shp"
-)
+if __name__ == "__main__":
+    csv_url = (
+        "https://raw.githubusercontent.com/binorassocies/rimdata/"
+        "refs/heads/main/data/results_elections_rim_2019-2024.csv"
+    )
+    shp_path = r"mrshape\mrt_admbnda_adm2_ansade_20240327.shp"
+
+    vz.styled_election_map_bokeh_candidate_selector(
+        csv_url=csv_url,
+        shp_path=shp_path,
+        region_col_shp="ADM2_EN",
+        region_col_csv="moughataa",
+        candidate_col="candidate",
+        votes_col="nb_votes",
+        title="Mauritania Elections – votes by selected candidate (ADM2)",
+    )
+
+
 
 
 
